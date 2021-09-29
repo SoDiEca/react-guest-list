@@ -1,51 +1,51 @@
-const baseUrl = 'https://fast-temple-67958.herokuapp.com';
+// const baseUrl = 'https://fast-temple-67958.herokuapp.com';
 
-//  getting the guest list from server using 'GET' method
+// //  getting the guest list from server using 'GET' method
 
-export default async function getAllGuestFromServer() {
-  const response = await fetch(`${baseUrl}/`);
-  const allGuests = await response.json();
+// export default async function getAllGuestFromServer() {
+//   const response = await fetch(`${baseUrl}/`);
+//   const allGuests = await response.json();
 
-  return allGuests;
-}
+//   return allGuests;
+// }
 
-// adding new guests to the guest list on server using 'POST' method
+// // adding new guests to the guest list on server using 'POST' method
 
-export default async function createNewGuest() {
-  const response = await fetch(`${baseUrl}/`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ firstName: '', lastName: '' }),
-  });
+// export default async function createNewGuest() {
+//   const response = await fetch(`${baseUrl}/`, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify({ firstName: '', lastName: '' }),
+//   });
 
-  const createdGuest = await response.json();
-  return createdGuest;
-}
-//  update guest's attending status using 'PATCH' method
+//   const createdGuest = await response.json();
+//   return createdGuest;
+// }
+// //  update guest's attending status using 'PATCH' method
 
-export default async function updateGuestAttendingStatus() {
-  const response = await fetch(`${baseUrl}/1`, {
-    method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ attending: true }),
-  });
-  const updatedGuest = await response.json();
-  return updatedGuest;
-}
+// export default async function updateGuestAttendingStatus() {
+//   const response = await fetch(`${baseUrl}/1`, {
+//     method: 'PATCH',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify({ attending: true }),
+//   });
+//   const updatedGuest = await response.json();
+//   return updatedGuest;
+// }
 
-//  delete guest from guest list on the server using 'DELETE' method
+// //  delete guest from guest list on the server using 'DELETE' method
 
-export default async function deleteGuestOnServer() {
-  const response = await fetch(`${baseUrl}/1`, {
-    method: 'DELETE',
-  });
-  const deletedGuest = await response.json();
-  return deletedGuest;
-}
+// export default async function deleteGuestOnServer() {
+//   const response = await fetch(`${baseUrl}/1`, {
+//     method: 'DELETE',
+//   });
+//   const deletedGuest = await response.json();
+//   return deletedGuest;
+// }
 
 // import { useEffect, useState } from 'react';
 
