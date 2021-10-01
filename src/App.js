@@ -41,12 +41,11 @@ const App = () => {
     const deletedGuest = await res.json();
 
     console.log(deletedGuest);
-    const guestToBeDeleted = guests.filter(
-      (guest) => guest.id !== deletedGuest.id,
-    );
-    console.log(guestToBeDeleted);
+    /* filtering the deleted guest out, and showing the remaining guests */
+    const guestsRemaining = guests.filter((g) => g.id !== deletedGuest.id);
+    console.log(guestsRemaining);
 
-    setGuests(guestToBeDeleted);
+    setGuests(guestsRemaining);
   };
 
   const updatedGuest = async () => {
@@ -66,27 +65,31 @@ const App = () => {
     e.preventDefault();
   };
   return (
-    <form className="add-form" onSubmit={onSubmit}>
-      <div className="form-control">
-        <label htmlFor="true">First Name</label>
-        <input
-          /* required*/
-          id="firstName"
-          value={firstName}
-          /* disabled={disable}*/
-          onChange={(e) => setFirstName(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="true">Last Name</label>
-        <input
-          /* required*/
-          id="lastName"
-          value={lastName}
-          /* disabled={disable}*/
-          onChange={(e) => setLastName(e.target.value)}
-        />
-      </div>
+    <div className="container">
+      <form className="add-form" onSubmit={onSubmit}>
+        <div className="form-control">
+          <label htmlFor="true">First Name</label>
+          <input
+            required
+            id="firstName"
+            value={firstName}
+            disabled={disable}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+        </div>
+      </form>
+      <form className="add-form" onSubmit={onSubmit}>
+        <div className="form-control">
+          <label htmlFor="true">Last Name</label>
+          <input
+            required
+            id="lastName"
+            value={lastName}
+            disabled={disable}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+        </div>
+      </form>
       <div>
         <button
           className="add guest btn"
@@ -98,14 +101,6 @@ const App = () => {
         >
           Add Guest
         </button>
-        <button
-          className="remove guest btn"
-          onDelete={() => {
-            deleteGuest();
-          }}
-        >
-          delete Guest
-        </button>
 
         <div className="form-control-checkbox">
           <label htmlFor="true">Attending Guests</label>
@@ -115,8 +110,29 @@ const App = () => {
             onChange={(e) => setAttendingGuests(e.currentTarget.checked)}
           />
         </div>
+        <div>
+          Guest List
+          {console.log('list', guests)}
+          <ul>
+            {guests.map((guest) => {
+              return (
+                <li key={guest.id}>
+                  {guest.firstName} {guest.lastName}
+                  <button
+                    className="remove guest btn"
+                    onClick={() => {
+                      deleteGuest(guest);
+                    }}
+                  >
+                    delete Guest
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
-    </form>
+    </div>
   );
 };
 
